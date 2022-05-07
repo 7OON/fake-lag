@@ -1,0 +1,22 @@
+getgenv().FakeLagSpeed = tonumber(a)
+		
+		end, {
+			["clear"] = false,
+		})
+		
+		local fakelagEnable = rageBot:AddSwitch("Fake Lag", function(state)
+             _G.fakelagEnableState = false
+            local Player = game:GetService("Players").LocalPlayer
+			local runService = game:service('RunService')
+			if state == true then
+			    _G.fakelagEnableState = true
+			    while _G.fakelagEnableState == true do
+			       Player.Character.HumanoidRootPart.Anchored = true
+			       wait(getgenv().FakeLagSpeed)
+			       Player.Character.HumanoidRootPart.Anchored = false
+			       wait()
+			    end
+			else
+			    _G.fakelagEnableState = false
+			end
+		end)
